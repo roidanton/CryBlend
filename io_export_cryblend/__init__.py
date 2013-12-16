@@ -1592,15 +1592,19 @@ class Cust_props_add(bpy.types.Menu):
 
 class Tools():
     def draw(self, context):
-        userpref = context.user_preferences
-        paths = userpref.filepaths
         layout = self.layout
-        # version number
-        layout.label(text='v' + '.'.join(str(n) for n in VERSION))
-        # layout.operator("open_donate.wp", icon='FORCE_DRAG')
+
+        layout.label(text='v{!s}'.format('.'.join(str(n) for n in VERSION)))
+
+        layout.label("Common")
         layout.operator("add_cryexport.node", icon='VIEW3D_VEC')
-        layout.operator("add_bo.joint", icon='META_CUBE')
+        layout.menu("Mat_ph_add", icon='PHYSICS')
+        layout.menu("Cust_props.add", icon='SCRIPT')
+        layout.operator("export_to.game", icon='GAME')
         layout.separator()
+
+        layout.label("Animations")
+        layout.operator("add_bo.joint", icon='META_CUBE')
         layout.operator("add_anim.node", icon='POSE_HLT')
         layout.separator()
         layout.operator("cb.fake_bone_add", icon='BONE_DATA')
@@ -1613,38 +1617,22 @@ class Tools():
         layout.operator("make_fb.kfml", icon='KEY_HLT')
         layout.operator("add_fb.kfm", icon='KEY_HLT')
         layout.separator()
-        # layout.operator_context = 'EXEC_AREA'
-        # layout.label(text="Add Material Physics", icon="PHYSICS")
-        layout.menu("Mat_ph_add", icon='PHYSICS')
         layout.separator()
+        layout.label("Utilities:")
         layout.menu("mesh_rep_tools", icon="MESH_CUBE")
         layout.separator()
         layout.operator("cb.find_no_uvs", icon="UV_FACESEL")
         layout.separator()
-        # layout.label(text="Add Custom Properties", icon="SCRIPT")
-        layout.menu("Cust_props.add", icon='SCRIPT')
-        layout.separator()
         layout.operator("find_deg.faces", icon='ZOOM_ALL')
         layout.operator("find_multiface.lines", icon='ZOOM_ALL')
         layout.separator()
-        # layout.operator("fix_wh.trans", icon='ZOOM_ALL')
-        layout.separator()
-
         layout.menu("CryBlendConfigurationPaths", icon='PREFERENCES')
         layout.separator()
-        # layout.label(text="Export to CryEngine", icon='GAME')
-        layout.operator("export_to.game", icon='GAME')
-        layout.separator()
-        # layout.operator("tog_sys.con", icon="CONSOLE")
-        # layout.label(text="rc.exe:")
-        # layout.prop(paths, "r_c", text="")
-        # layout.operator("f_ind.rc", icon='GAME')
-        # layout.operator("save_config.file", icon='GAME')
-        # use an operator enum property to populate a submenu
-        # layout.operator_menu_enum("object.select_by_type",
-        #                           property="type",
-        #                           text="Select All by Type...",
-        #                           )save_config.file
+        
+        # layout.operator("open_donate.wp", icon='FORCE_DRAG')
+        # layout.operator_context = 'EXEC_AREA'
+        # layout.label(text="Add Material Physics", icon="PHYSICS")
+        # layout.operator("fix_wh.trans", icon='ZOOM_ALL')
 
 
 class ToolsMenu(Tools, bpy.types.Menu):
