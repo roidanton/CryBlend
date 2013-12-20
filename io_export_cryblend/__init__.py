@@ -1596,39 +1596,46 @@ class Tools():
 
         layout.label(text='v{!s}'.format('.'.join(str(n) for n in VERSION)))
 
-        layout.label("Common")
+        layout.separator()
         layout.operator("add_cryexport.node", icon='VIEW3D_VEC')
         layout.menu("Mat_ph_add", icon='PHYSICS')
         layout.menu("Cust_props.add", icon='SCRIPT')
         layout.operator("export_to.game", icon='GAME')
-        layout.separator()
 
-        layout.label("Animations")
+        layout.separator()
+        layout.label("Animations:")
         layout.operator("add_bo.joint", icon='META_CUBE')
         layout.operator("add_anim.node", icon='POSE_HLT')
+
         layout.separator()
         layout.operator("cb.fake_bone_add", icon='BONE_DATA')
         layout.operator("cb.fake_bone_remove", icon='BONE_DATA')
+
         layout.separator()
         layout.operator("cb.bone_geom_add", icon="PHYSICS")
         layout.operator("cb.bone_geom_remove", icon="PHYSICS")
         layout.operator("cb.phys_bones_rename", icon="PHYSICS")
+
         layout.separator()
         layout.operator("make_fb.kfml", icon='KEY_HLT')
         layout.operator("add_fb.kfm", icon='KEY_HLT')
-        layout.separator()
+
         layout.separator()
         layout.label("Utilities:")
         layout.menu("mesh_rep_tools", icon="MESH_CUBE")
+
         layout.separator()
         layout.operator("cb.find_no_uvs", icon="UV_FACESEL")
+
         layout.separator()
         layout.operator("find_deg.faces", icon='ZOOM_ALL')
         layout.operator("find_multiface.lines", icon='ZOOM_ALL')
+
         layout.separator()
         layout.menu("CryBlendConfigurationPaths", icon='PREFERENCES')
+
         layout.separator()
-        
+
         # layout.operator("open_donate.wp", icon='FORCE_DRAG')
         # layout.operator_context = 'EXEC_AREA'
         # layout.label(text="Add Material Physics", icon="PHYSICS")
